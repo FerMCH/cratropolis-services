@@ -1,0 +1,13 @@
+package com.creatopolis.commons;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class CreatopolisCommonsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(CreatopolisCommonsApplication.class, args);
+	}
+
+}

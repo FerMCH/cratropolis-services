@@ -1,7 +1,9 @@
 package com.creatopolis.usuarios.serviceimp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +42,21 @@ public class UsuarioServicesImp implements UsuariosServices {
 	public void delete(Long id) {
 		this.usuarioRepository.deleteById(id);
 
+	}
+
+	@Override
+	public Usuario findAllByEmail(String email) {
+		return this.usuarioRepository.findByEmail(email);
+	}
+
+	@Override
+	public List<Usuario> findByCategoria(String categorias) {
+		List<Usuario> listaUsuarios = this.usuarioRepository.findAll();
+		List<Long> listaCategorias = new ArrayList<>();
+		for (String cat : categorias.split(",")) {
+			listaCategorias.add(Long.parseLong(cat));
+		}
+		return listaUsuarios.stream().filter(usuario -> usuario.getCategorias().stream().anyMatch(listaCategorias::contains)).collect(Collectors.toList());
 	}
 
 }

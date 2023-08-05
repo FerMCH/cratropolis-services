@@ -1,8 +1,13 @@
 package com.creatopolis.commons.dto;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.creatopolis.commons.model.Usuario;
+import com.creatopolis.commons.utils.Role;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 public class UsuarioDto implements Serializable{
 	
@@ -19,6 +24,28 @@ public class UsuarioDto implements Serializable{
 	private String descripcion;
 	
 	private String password;
+
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	private List<Long> categorias;
+	
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role Role) {
+		this.role = Role;
+	}
+
+	public List<Long> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Long> categorias) {
+		this.categorias = categorias;
+	}
 	
 	public Long getId() {
 		return id;
@@ -79,6 +106,8 @@ public class UsuarioDto implements Serializable{
 		this.id = user.getId();
 		this.nombre = user.getNombre();
 		this.password = user.getPassword();
+		this.categorias = user.getCategorias();
+		this.role = user.getRole();
 	}
 
 

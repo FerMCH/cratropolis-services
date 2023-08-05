@@ -11,6 +11,10 @@ public interface UsuariosServices {
 	
 	public List<Usuario> getAllUsers();
 	
+	public List<Usuario> findByCategoria(String categorias);
+	
+	public Usuario findAllByEmail(String email);
+	
 	public Usuario updateUsuario(Usuario user);
 	
 	public void delete(Long id);

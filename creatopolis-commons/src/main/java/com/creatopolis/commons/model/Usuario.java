@@ -1,8 +1,8 @@
 package com.creatopolis.commons.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +16,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
+import com.creatopolis.commons.utils.Categoria;
 import com.creatopolis.commons.utils.Role;
 
 @Entity
@@ -42,23 +44,23 @@ public class Usuario implements UserDetails {
 	@Column(nullable = false)
 	private String password;
 	
-	private Role role;
+	private List<Role> role;
 	
-	private List<Long> categorias;
+	private List<Categoria> categorias;
 	
-	public Role getRole() {
+	public List<Role> getRole() {
 		return role;
 	}
 
-	public void setRole(Role Role) {
+	public void setRole(List<Role> Role) {
 		this.role = Role;
 	}
 
-	public List<Long> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Long> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 
@@ -127,7 +129,8 @@ public class Usuario implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
-		return List.of(new SimpleGrantedAuthority(this.role.name()));
+		
+		return this.role.stream().map(row -> new SimpleGrantedAuthority("")).collect(Collectors.toList());
 	}
 
 	@Override

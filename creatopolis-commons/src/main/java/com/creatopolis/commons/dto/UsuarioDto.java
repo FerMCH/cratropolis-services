@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.creatopolis.commons.model.Usuario;
+import com.creatopolis.commons.utils.Categoria;
 import com.creatopolis.commons.utils.Role;
 
 import jakarta.persistence.EnumType;
@@ -26,24 +27,25 @@ public class UsuarioDto implements Serializable{
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	private Role role;
+	private List<Role> role;
 	
-	private List<Long> categorias;
+	@Enumerated(EnumType.STRING)
+	private List<Categoria> categorias;
 	
 	
-	public Role getRole() {
+	public List<Role> getRole() {
 		return role;
 	}
 
-	public void setRole(Role Role) {
+	public void setRole(List<Role> Role) {
 		this.role = Role;
 	}
 
-	public List<Long> getCategorias() {
+	public List<Categoria> getCategorias() {
 		return categorias;
 	}
 
-	public void setCategorias(List<Long> categorias) {
+	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
 	

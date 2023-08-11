@@ -1,7 +1,7 @@
 package com.creatopolis.commons.utils;
 
 public enum Role {
-	ADMIN,
+	CREATIVO,
 	FAN,
 	MECENA
 }
